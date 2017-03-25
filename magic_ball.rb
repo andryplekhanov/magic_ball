@@ -1,32 +1,23 @@
-greetings = [
-  "Привет, дорогой друг. Отвечаю на твой вопрос...",
-  "Кто вопрошает, тот получит ответ:",
-  "Здравствуй, смертный. Сегодня для тебя такой ответ:"
-]
+current_path = File.dirname(__FILE__)
+greetings_path = current_path + "/data/greetings.txt"
+answers_path = current_path + "/data/answers.txt"
 
-answers = [
-  "Бесспорно",
-  "Предрешено",
-  "Никаких сомнений",
-  "Определённо да",
-  "Можешь быть уверен в этом",
-  "Мне кажется — «да»",
-  "Вероятнее всего",
-  "Хорошие перспективы",
-  "Знаки говорят — «да»",
-  "Да",
-  "Пока не ясно, попробуй снова",
-  "Спроси позже",
-  "Лучше не рассказывать",
-  "Сейчас нельзя предсказать",
-  "Сконцентрируйся и спроси опять",
-  "Даже не думай",
-  "Мой ответ — «нет»",
-  "По моим данным — «нет»",
-  "Перспективы не очень хорошие",
-  "Весьма сомнительно"
-]
+if File.exist?(answers_path)
+  f = File.new(answers_path, "r:UTF-8")
+  answers = f.readlines
+  f.close
+else
+  abort "Вы сломали волшебный шар! Обратитесь к разработчику: он зарядит его манной."
+end
 
-puts greetings.sample
+if File.exist?(greetings_path)
+  f = File.new(greetings_path, "r:UTF-8")
+  greetings = f.readlines
+  f.close
+  puts greetings.sample
+else
+  puts "Здравствуйте!"
+end
+
 sleep 2
 puts answers.sample
